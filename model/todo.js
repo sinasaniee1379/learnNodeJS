@@ -20,6 +20,40 @@ class Todo {
       });
     });
   }
+
+  static fetchAll(callback) {
+    fs.readFile(filePath, (err, fileContent) => {
+      if (err) return [];
+      const todos = JSON.parse(fileContent);
+      callback(todos);
+    });
+  }
+
+  static deleteTodo(id, callback) {
+    console.log({ id });
+    fs.readFile(filePath, (err, fileContent) => {
+      const todos = JSON.parse(fileContent);
+      console.log(todos);
+      const filteredTodos = todos.filter((t) => t.id != id);
+      fs.writeFile(filePath, JSON.stringify(filteredTodos), (err) => {
+        callback(err);
+      });
+    });
+  }
+
+  static setTodoToCompleted(id, callback) {
+    fs.readFile(filePath, (err, fileContent) => {
+      const todos = JSON.parse(fileContent);
+      const todoIndex = todos.findIndex((t) => t.id == id);
+
+      const todo = todos[todoIndex];
+      todo.completed = true;
+      todos[todoIndex] = todo;
+      fs.writeFile(filePath, JSON.stringify(todos), (err) => {
+        callback(err);
+      });
+    });
+  }
 }
 
 module.exports = Todo;

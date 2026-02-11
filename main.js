@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const adminRouter = require("./routes/admin");
+const indexRoutes = require("./routes/index");
 const { setStatics } = require("./utils/statics");
 
 // Middlewares
@@ -19,10 +20,10 @@ setStatics(app);
 
 // Routes
 app.use("/admin", adminRouter);
-
+app.use(indexRoutes);
 app.get("/", (req, res) => {
   res.render("index", { pageTitle: "کار های روزمره" });
 });
 // End of Routes
 
-app.listen(3000, () => console.log("Server is running."));
+app.listen(3001, () => console.log("Server is running."));
