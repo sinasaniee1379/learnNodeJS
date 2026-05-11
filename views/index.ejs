@@ -31,13 +31,21 @@
         <p class="d-inline col">
           کارهای انجام شده :
           <span class="badge badge-success badge-pill"
-            >0<!-- CompletedTodos --></span
+            ><% if(completedTodo === 0){ %>
+0
+              <% } else{ %>
+                <%= completedTodo %> 
+                <% } %></span
           >
         </p>
         <p class="d-inline col">
           کارهای باقی مانده امروز :
           <span class="badge badge-warning badge-pill"
-            >0<!-- RemainingTodos --></span
+            > <% if(remainingTodo === 0){ %>
+0
+              <% } else{ %>
+                <%= remainingTodo %> 
+                <% } %></span
           >
         </p>
       </div>

@@ -1,10 +1,12 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+
 const app = express();
 const adminRouter = require("./routes/admin");
 const indexRoutes = require("./routes/index");
 const { setStatics } = require("./utils/statics");
 
+require("./utils/database");
 // Middlewares
 app.use(bodyParser.urlencoded({ extended: false }));
 // End of Middlewares
